@@ -58,3 +58,14 @@ MonoBehaviour:
     subParameters:
     - name: IsOrtho
     labels: []
+  - name: WorldOrigin
+    icon: {fileID: 0}
+    type: 102
+    parameter:
+      name: Origin
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters:
+    - name: Origin
+    labels: []

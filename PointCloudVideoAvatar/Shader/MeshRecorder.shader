@@ -9,6 +9,7 @@ Properties {
 	_NEAR("Near Plane", Float) = 0.0
 	_FAR("Far Plane", Float) = 0.0
 	[ToggleUI] _isOrtho("Is Ortho?",Float) = 1.0
+	[ToggleUI] _RelativeOrigin("Relative Origin?",Float) = 1.0
 }
 SubShader{
 		//Tags { "Queue"="Transparent" "RenderType"="Transparent" "PreviewType"="Plane" }

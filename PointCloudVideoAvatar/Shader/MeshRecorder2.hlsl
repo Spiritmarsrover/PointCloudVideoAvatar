@@ -8,6 +8,7 @@ float _FOVSIZE;
 float _NEAR;
 float _FAR;
 float _isOrtho;
+float _RelativeOrigin;
 static const float _PositionScale = 2;
 
 struct VertInputTile {
@@ -102,8 +103,20 @@ float4 EncodeTransform(VertInputTile i, inout FragInputTile o) {
 	// pos, rot, scale
 	float3 rotY = i.mat1.c1;
 	float3 rotZ = i.mat1.c2;
-	float3 pos  = i.mat1.c3 - i.mat0.c3;
+	//float3 pos  = i.mat1.c3 - i.mat0.c3;
+	float3 pos = 0.0;
+	/*if (_RelativeOrigin > 0.5) 
+	{
+		pos = i.mat0.c3;
+	}
+	else 
+	{
+		pos = i.mat1.c3 - i.mat0.c3;
+	}*/
+	
+	pos = i.mat1.c3 - i.mat0.c3;
 	pos  = mul(transpose(i.mat0), pos)  / dot(i.mat0.c1, i.mat0.c1);
+	
 	rotY = mul(transpose(i.mat0), rotY) / dot(i.mat0.c1, i.mat0.c1);
 	rotZ = mul(transpose(i.mat0), rotZ) / dot(i.mat0.c1, i.mat0.c1);
 	float scale = length(rotY);
@@ -147,12 +160,14 @@ float4 EncodeTransform(VertInputTile i, inout FragInputTile o) {
 	// color, rect
 	float4 rect = GetTileRect(uint(i.slot));
 
+	//Build the Quaternion from Rotation Matrix
 	float3x3 rotMatrix;
 	rotMatrix[0] = normalize(i.mat1.c0.xyz);
 	rotMatrix[1] = normalize(i.mat1.c1.xyz);
 	rotMatrix[2] = normalize(i.mat1.c2.xyz);
 	float4 q = QuaternionFromMatrix(rotMatrix);
 
+	//Override slots
 	if (uint(i.slot) == 6) 
 	{
 		data = q.x;
