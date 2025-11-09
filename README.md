@@ -29,7 +29,7 @@ It’s designed for creating **point cloud video recordings**, not playback or d
 ## 🧭 Usage
 
 You can test or upload your own version.  
-*(A sample avatar may be provided later.)*
+
 
 1. Open the **Radial Menu** (hold down Menu button or press `R` on desktop)
 2. Go to **Expressions**
@@ -39,16 +39,15 @@ You can test or upload your own version.
    - **ToggleMesh** – Hides or shows your avatar body  
    - **STICK/HEAD** – Switches camera between head or stick position
 4. Start by clicking **Enable360Cam (HEAVY PERF)**  
-5. You’ll see a **Capture Sphere** (bright, uncomfortable to look at) and a small **screen follower**
+5. You’ll see a **Capture Sphere** and a small **screen follower**
 6. **ToggleMesh** to make your avatar invisible if desired  
 7. Use **World Drop** to place the capture sphere somewhere stable  
 8. **STICK/HEAD** to move the camera mount point
 9. Open your VRChat **camera** and double-click the icon to view
 10. In “Anchor,” select **World** so it stops following your player
 11. Grab the camera lens and place it **inside the Capture Sphere**
-12. In the right-side camera settings, set **Camera Resolution** to **8K**
-13. Use the VRChat camera to **capture** your image or video  
-    *(Later you can stretch the video to 2:1 equirectangular if needed.)*
+12. Change the camera to stream, spout is recommended
+13. Use the VRChat camera to **capture** your image or video
 
 ---
 
@@ -57,7 +56,7 @@ You can test or upload your own version.
 The avatar’s shader encodes scene information into a **video texture** using ShaderMotion’s data layout.  
 - The **top half** of each frame stores **color**.  
 - The **bottom half** stores **depth**, encoded in HSV (“chuting”).  
-- Extra metadata is written to reserved “slots” in the video frame for camera and projection data.
+- Camera position, rotation and settings is written to reserved “slots” in the video frame for camera and projection data.
 
 ---
 
@@ -92,7 +91,7 @@ The avatar’s shader encodes scene information into a **video texture** using S
 
 - **Mesh Toggle** – Hides the avatar mesh (useful for invisible capture).  
 - Reuses animation and expression controls from the **360Camera** avatar.  
-- Designed purely for **recording and encoding** — no decoding or playback yet.  
+- Designed purely for **recording and encoding**.
 
 ---
 
@@ -107,27 +106,18 @@ The avatar’s shader encodes scene information into a **video texture** using S
 
 ## 🚧 Known Limitations
 
-- VRChat video textures are limited to **1080p** resolution.  
-- No live decoding support (future project may handle this).  
-- Frame rate and depth precision depend on your system’s performance.  
+- Recording above 1080p is not recommended.
+- Hand is shaky. Might a angular resolution problem
 
 ---
 
-## 📚 Future Plans
+## Future
 
-- Avatar-side decoding & reconstruction.  
-- Improved shader visualization.  
-- Automatic equirectangular export format.
-
----
-
-## 🧱 License
-
-MIT License (or your preferred license here)
+- Add a toggle to drop the camera
 
 ---
 
 ## 📸 Credits
 
-- Original concept and shader work by **Spiritmarsrover**  
-- Based on methods from **ShaderMotion** encoding system
+- Depth encoding and major hacking of **ShaderMotion** by **Spiritmarsrover**  
+- Thanks for **ShaderMotion** for the encoding system
